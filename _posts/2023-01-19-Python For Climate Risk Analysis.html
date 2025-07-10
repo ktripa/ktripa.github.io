@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyzing Climate Risk with Python: A Basic Approach</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background-color: #1f2937; /* Darker gray for code blocks */
+            color: #f9fafb; /* Light text for code */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto; /* Allow horizontal scrolling for long lines */
+        }
+        code {
+            font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container">
+        <!-- Blog Post Header -->
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Analyzing Climate Risk with Python: A Basic Approach</h1>
+            <p class="text-gray-600 text-lg">Published on July 10, 2025 by Your Name</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+                <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Climate Risk</span>
+                <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Data Analysis</span>
+            </div>
+        </header>
+
+        <!-- Introduction -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Introduction: Understanding the Challenge</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Climate change poses significant risks to various sectors, from agriculture to urban infrastructure.
+                Understanding and quantifying these risks is crucial for developing effective resilience strategies.
+                In this post, we'll explore a basic approach to analyzing historical temperature data using Python
+                to identify potential trends and extreme events, which are key indicators of climate risk.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Our goal is to demonstrate how simple data analysis techniques can provide valuable insights into
+                changing climate patterns, laying the groundwork for more complex risk assessments.
+            </p>
+        </section>
+
+        <!-- Code Section: Loading and Inspecting Data -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Step 1: Loading and Inspecting Climate Data</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                For this example, we'll simulate a dataset of monthly average temperatures. In a real-world scenario,
+                you would typically load data from sources like NOAA, NASA, or regional meteorological agencies.
+                We'll use the pandas library for data manipulation.
+            </p>
+            <pre><code>
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simulate monthly average temperature data for 30 years
+# (In a real scenario, this would be loaded from a CSV or API)
+np.random.seed(42) # for reproducibility
+years = np.arange(1990, 2020)
+months = np.arange(1, 13)
+dates = pd.to_datetime([f"{y}-{m:02d}-01" for y in years for m in months])
+
+# Base temperature with some seasonality and a slight upward trend
+base_temp = 15 + 10 * np.sin(np.linspace(0, 2 * np.pi * len(dates) / 12, len(dates)))
+trend = np.linspace(0, 2, len(dates)) # A slight warming trend
+noise = np.random.normal(0, 2, len(dates)) # Random fluctuations
+
+temperatures = base_temp + trend + noise
+
+df = pd.DataFrame({
+    'Date': dates,
+    'Temperature_C': temperatures
+})
+
+# Set 'Date' as index
+df.set_index('Date', inplace=True)
+
+print("First 5 rows of the dataset:")
+print(df.head())
+
+print("\nDataset Info:")
+df.info()
+            </code></pre>
+            <p class="text-gray-700 leading-relaxed mt-4">
+                The code above first imports necessary libraries: <code>pandas</code> for data handling,
+                <code>numpy</code> for numerical operations, and <code>matplotlib.pyplot</code> for plotting.
+                We then generate a synthetic time series dataset representing monthly average temperatures over 30 years.
+                This dataset includes a seasonal component, a subtle warming trend, and some random noise to mimic real-world data.
+                Finally, we print the first few rows and the data information to ensure it's loaded correctly.
+            </p>
+        </section>
+
+        <!-- Code Section: Basic Analysis and Visualization -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Step 2: Trend Analysis and Visualization</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Visualizing the data is often the first step in identifying patterns. We'll plot the temperature
+                over time and also calculate a rolling average to smooth out seasonality and highlight the long-term trend.
+            </p>
+            <pre><code>
+# Calculate a 12-month rolling average to smooth out seasonality
+df['Rolling_Avg_Temp'] = df['Temperature_C'].rolling(window=12).mean()
+
+# Plotting the data
+plt.figure(figsize=(12, 6))
+plt.plot(df.index, df['Temperature_C'], label='Monthly Average Temperature', alpha=0.7)
+plt.plot(df.index, df['Rolling_Avg_Temp'], color='red', linewidth=2, label='12-Month Rolling Average')
+plt.title('Monthly Average Temperature and Rolling Average (1990-2019)')
+plt.xlabel('Year')
+plt.ylabel('Temperature (°C)')
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# Calculate overall temperature change
+temp_start = df['Temperature_C'].iloc[0]
+temp_end = df['Temperature_C'].iloc[-1]
+overall_change = temp_end - temp_start
+print(f"\nOverall temperature change from start to end: {overall_change:.2f} °C")
+            </code></pre>
+            <p class="text-gray-700 leading-relaxed mt-4">
+                Here, we compute a 12-month rolling average to better observe the underlying temperature trend,
+                filtering out the seasonal fluctuations. The plot clearly shows both the raw monthly data and
+                the smoothed trend line, making it easier to spot the gradual increase in temperature over the decades.
+                We also calculate the total temperature change from the beginning to the end of our simulated period,
+                providing a quantitative measure of the observed warming.
+            </p>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Conclusion: Next Steps in Climate Risk Assessment</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                This basic analysis demonstrates how even simple techniques can reveal significant climate trends.
+                For real-world climate risk and resilience work, you would expand on this by:
+            </p>
+            <ul class="list-disc list-inside text-gray-700 leading-relaxed mb-4 space-y-2">
+                <li>Incorporating more complex climate variables (precipitation, humidity, wind speed).</li>
+                <li>Using statistical models to forecast future trends and extreme events.</li>
+                <li>Integrating geospatial data to map vulnerable areas.</li>
+                <li>Performing economic impact assessments of climate hazards.</li>
+                <li>Developing adaptation and mitigation strategies based on the identified risks.</li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed">
+                By consistently publishing well-explained projects and analyses on your GitHub blog, you build a strong
+                portfolio that directly speaks to the needs of the climate risk and resilience industry. Good luck!
+            </p>
+        </section>
+
+        <!-- Footer (Optional) -->
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+            <p>Connect with me on <a href="#" class="text-blue-600 hover:underline">LinkedIn</a> and explore more projects on <a href="#" class="text-blue-600 hover:underline">GitHub</a>.</p>
+        </footer>
+    </div>
+</body>
+</html>
