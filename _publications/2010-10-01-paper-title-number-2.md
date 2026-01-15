@@ -1,14 +1,12 @@
 ---
-title: "Paper Title Number 2"
+title: "How unusual is the 2022 European compound drought and heatwave event?"
 collection: publications
-category: manuscripts
-permalink: /publication/2010-10-01-paper-title-number-2
-excerpt: 'This paper is about the number 2. The number 3 is left for future work.'
-date: 2010-10-01
-venue: 'Journal 1'
-slidesurl: 'https://academicpages.github.io/files/slides2.pdf'
-paperurl: 'https://academicpages.github.io/files/paper2.pdf'
-citation: 'Your Name, You. (2010). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
+permalink: /publication/2023-grl-europe-drought
+excerpt: 'Analyzing the unprecedented 2022 European summer drought-heatwave compound event.'
+date: 2023-08-16
+venue: 'Geophysical Research Letters'
+paperurl: 'https://doi.org/10.1029/2023GL105453'
+citation: 'Tripathy, K.P. & Mishra, A.K. (2023). &quot;How unusual is the 2022 European compound drought and heatwave event?&quot; <i>Geophysical Research Letters</i>, 50(15), e2023GL105453.'
 ---
 
-The contents above will be part of a list of publications, if the user clicks the link for the publication than the contents of section will be rendered as a full page, allowing you to provide more information about the paper for the reader. When publications are displayed as a single page, the contents of the above "citation" field will automatically be included below this section in a smaller font.
+[Download paper here](https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/2023GL105453)
