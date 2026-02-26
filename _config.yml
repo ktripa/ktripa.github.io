@@ -62,7 +62,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Add your LinkedIn username (just the username, not full URL)
+  linkedin         : kumar-p-tripathy-ph-d-91447517a # Add your LinkedIn username (just the username, not full URL)
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
@@ -214,9 +214,9 @@ collections:
   publications:
     output: true
     permalink: /:collection/:path/
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
+  # portfolio:
+  #   output: true
+  #   permalink: /:collection/:path/
   talks:
     output: true
     permalink: /:collection/:path/
