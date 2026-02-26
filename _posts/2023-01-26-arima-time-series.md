@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ARIMA Time Series Analysis — A Complete Walkthrough"
-date: 2025-02-26
+date: 2023-01-26
 description: Step-by-step ARIMA(3,1,0) analysis with 80/20 train-test split, 
              multi-lead forecasting, and diagnostic plots using Python.
 tags: [ARIMA, time-series, hydrology, Python, forecasting]
