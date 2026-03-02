@@ -6,7 +6,7 @@ author_profile: true
 ---
 
 <div style="margin-bottom: 20px; padding: 15px; background-color: #f5f5f5; border-left: 4px solid #0066cc;">
-<strong>Publication Metrics:</strong> Citations: 766 | h-index: 4 | 
+<strong>Publication Metrics:</strong> Citations: 770 | h-index: 4 | 
 <a href="https://scholar.google.com/citations?user=PS_CX0AAAAAJ">Google Scholar Profile</a>
 </div>
 
@@ -28,9 +28,9 @@ author_profile: true
 
 ## Under Review
 
-7. **Tripathy, K.P.** & Mishra, A.K. Attributing hydrological drought mechanisms across CONUS using explainable Artificial Intelligence. *Minor Revision: Water Resources Research*. [PDF](https://drive.google.com/file/d/1tsDueTzKIQ1n1vpAkgy8cwHXyALNQ7G0/view?usp=drive_link)
+7. **Tripathy, K.P.** & Mishra, A.K. Attributing hydrological drought mechanisms across CONUS using explainable Artificial Intelligence. *Minor Revision: Water Resources Research*. #[PDF](https://drive.google.com/file/d/1tsDueTzKIQ1n1vpAkgy8cwHXyALNQ7G0/view?usp=drive_link)
 
-8. **Tripathy, K.P.** & Mishra, A.K. Physics-guided Transformer for drought prediction integrating land-atmosphere feedbacks. *Major Revision: Journal of Hydrology*. [PDF](https://drive.google.com/file/d/1jx1RjPOzM8EDIlXvVYWDCA62Xky__C_A/view?usp=drive_link)
+8. **Tripathy, K.P.** & Mishra, A.K. Physics-guided Transformer for drought prediction integrating land-atmosphere feedbacks. *Major Revision: Journal of Hydrology*. #[PDF](https://drive.google.com/file/d/1jx1RjPOzM8EDIlXvVYWDCA62Xky__C_A/view?usp=drive_link)
 
 ---
 
