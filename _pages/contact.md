@@ -7,7 +7,7 @@ author_profile: true
 
 ## Get in Touch
 
-I'm always interested in discussing research collaborations, postdoctoral opportunities, or consulting projects related to hydroclimatic extremes, machine learning for environmental science, or water resource management.
+I'm always interested in discussing research collaborations, postdoctoral opportunities, or consulting projects related to hydroclimatic extremes, machine learning for Hydrology and Earth Sciences.
 
 **Email:**  
 - Primary: [tripathypuranbdk@gmail.com](mailto:tripathypuranbdk@gmail.com)  
