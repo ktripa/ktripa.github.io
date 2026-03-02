@@ -1,14 +1,5 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve -l -H localhost`. If you change this file, please restart the 
-# server process.
-
 # Basic Site Settings
 locale                   : "en-US"
-site_theme               : "default" # Options: "default", "air", "sunrise", "mint", "dirt", "contrast"
 title                    : "Kumar Puran Tripathy"
 title_separator          : "-"
 name                     : &name "Kumar Puran Tripathy"
@@ -19,136 +10,32 @@ repository               : "ktripa/ktripa.github.io"
 
 # Site Author
 author:
-  # Biographic information
-  avatar           : "profile.png"  # Add your photo as profile.png in /images/ folder
+  avatar           : "profile.png"
   name             : "Kumar Puran Tripathy"
-  pronouns         : # Optional
   bio              : "Postdoctoral Researcher | Hydroclimatic Extremes | AI4Science"
   location         : "College Station, Texas"
   employer         : "Texas A&M University"
-  uri              : # Optional personal website URL
   email            : "tripathypuranbdk@gmail.com"
 
   # Academic websites
-  academia         : # URL
-  arxiv            : # URL
   googlescholar    : "https://scholar.google.com/citations?user=wMA_dkQAAAAJ&hl=en"
-  inspire-hep      : # URL
-  impactstory      : # URL
-  orcid            : "https://orcid.org/my-orcid?orcid=0000-0002-2451-0166"
-  semantic         : # URL
-  ssrn             : # URL
-  pubmed           : # URL
-  researchgate     : # Add if you have ResearchGate profile
-  scopus           : # URL
-  zotero           : # URL
-
-  # Repositories and software development
-  bitbucket        : # Username
-  codepen          : # Username
-  dribbble         : # Username
-  github           : "ktripa"  # Update with your actual GitHub username
-  kaggle           : # Username  
-  stackoverflow    : # User number
-
-  # Social media
-  artstation       : # Username
-  bluesky          : # Username
-  facebook         : # Username
-  flickr           : # Username
-  foursquare       : # Username
-  goodreads        : # Username
-  google_plus      : # Username
-  keybase          : # Username
-  instagram        : # Username
-  lastfm           : # Username
-  linkedin         : kumar-p-tripathy-ph-d-91447517a # Add your LinkedIn username (just the username, not full URL)
-  mastodon         : # URL
-  medium           : # URL
-  pinterest        : # Username
-  soundcloud       : # Username
-  steam            : # Username
-  telegram         : # URL
-  tumblr           : # Username
-  twitter          : # Username for X / Twitter
-  vine             : # Username
-  weibo            : # Username
-  wikipedia        : # Username
-  xing             : # Username
-  youtube          : # Username
-  zhihu            : # Username
-
-# Publication Category
-publication_category:
-  books:
-    title: 'Books'
-  manuscripts:
-    title: 'Journal Articles'    
-  conferences:
-    title: 'Conference Papers'
+  orcid            : "https://orcid.org/0000-0002-2451-0166"
+  github           : "ktripa"
+  linkedin         : "kumar-p-tripathy-ph-d-91447517a"
+  researchgate     : # Add if you have one
 
 # Site Settings
-teaser                   :  # filename of teaser fallback teaser image placed in /images/
 breadcrumbs              : false
 words_per_minute         : 160
 future                   : true
 read_more                : "disabled"
 talkmap_link             : false
-comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
-  disqus:
-    shortname            :
-  discourse:
-    server               :
-  facebook:
-    appid                :
-    num_posts            :
-    colorscheme          :
-staticman:
-  allowedFields          : ['name', 'email', 'url', 'message']
-  branch                 : "gh-pages"
-  commitMessage          : "New comment."
-  filename               : comment-{@timestamp}
-  format                 : "yml"
-  moderation             : true
-  path                   : "_data/comments/{options.slug}"
-  requiredFields         : ['name', 'email', 'message']
-  transforms:
-    email                : "md5"
-  generatedFields:
-    date:
-      type               : "date"
-      options:
-        format           : "iso8601"
 atom_feed:
   hide                   : false
-  path                   :
-
-# SEO Related
-google_site_verification :
-bing_site_verification   :
-alexa_site_verification  :
-yandex_site_verification :
-
-# Social Sharing
-twitter:
-  username               : &twitter
-facebook:
-  username               :
-  app_id                 :
-  publisher              :
-og_image                 :
-og_description           :
-social:
-  type                   :
-  name                   :
-  links:
 
 # Analytics
 analytics:
-  provider               :  "false"
-  google:
-    tracking_id          :
+  provider               : "false"
 
 # Reading Files
 include:
@@ -163,24 +50,11 @@ exclude:
   - .github
   - .jekyll-assets-cache
   - .sass-cache
-  - assets/js/_main.js
-  - assets/js/plugins
-  - assets/js/vendor
   - CHANGELOG
-  - Capfile
-  - config
-  - Dockerfile
   - Gemfile
-  - Gruntfile.js
-  - gulpfile.js
   - LICENSE
-  - local
-  - log
-  - node_modules
-  - package.json*
-  - Rakefile
   - README
-  - tmp
+  - node_modules
   - vendor
 keep_files:
   - .git
@@ -206,34 +80,14 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
-# Collections
+# Collections - ONLY PUBLICATIONS
 collections:
-  teaching:
-    output: true
-    permalink: /:collection/:path/
   publications:
-    output: true
-    permalink: /:collection/:path/
-  # portfolio:
-  #   output: true
-  #   permalink: /:collection/:path/
-  talks:
     output: true
     permalink: /:collection/:path/
 
 # Defaults
 defaults:
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
   # _pages
   - scope:
       path: ""
@@ -241,15 +95,6 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # _teaching
-  - scope:
-      path: ""
-      type: teaching
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
   # _publications
   - scope:
       path: ""
@@ -259,23 +104,6 @@ defaults:
       author_profile: true
       share: true
       comments: true
-  # _portfolio
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comment: true
-  # _talks
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
-      author_profile: true
-      share: true
 
 # Sass/SCSS
 sass:
@@ -289,19 +117,8 @@ timezone: America/Chicago
 # Plugins
 plugins:
   - jekyll-feed
-  - jekyll-gist
-  - jekyll-paginate
   - jekyll-sitemap
   - jekyll-redirect-from
-  - jemoji
-
-whitelist:
-  - jekyll-feed
-  - jekyll-gist
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-redirect-from
-  - jemoji
 
 # Archives
 category_archive:
@@ -313,3 +130,6 @@ tag_archive:
 
 # HTML Compression
 compress_html:
+  clippings: all
+  ignore:
+    envs: development
