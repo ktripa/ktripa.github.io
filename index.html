@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kumar P. Tripathy | Hydroclimatic Extremes</title>
+<meta name="description" content="Kumar P. Tripathy. Postdoctoral researcher working on droughts, heatwaves, flash droughts, and explainable AI." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --paper:#faf6ee;
+  --paper-2:#f2ecdf;
+  --ink:#221c14;
+  --ink-soft:#5c5345;
+  --line:#d8cfbc;
+  --accent:#b1471a;        /* dry terracotta */
+  --accent-deep:#7c2d0e;
+  --wet:#1f6f6b;           /* wet teal */
+  --card:#fffdf8;
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Fraunces',serif;
+  --sans:'Karla',sans-serif;
+  --maxw:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  background-image:
+    radial-gradient(circle at 12% 0%, rgba(177,71,26,.06), transparent 38%),
+    radial-gradient(circle at 95% 100%, rgba(31,111,107,.05), transparent 40%);
+}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(177,71,26,.35)}
+a:hover{color:var(--accent-deep)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+/* header */
+header{
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:rgba(250,246,238,.92);
+  backdrop-filter:blur(6px);z-index:50;
+}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-weight:700;font-size:1.25rem;letter-spacing:.2px;border:none;color:var(--ink)}
+.brand span{color:var(--accent)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button{
+  font-family:var(--sans);font-weight:700;font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;
+  background:none;border:none;color:var(--ink-soft);padding:8px 14px;cursor:pointer;border-radius:999px;
+  transition:all .18s ease;
+}
+nav button:hover{color:var(--ink);background:var(--paper-2)}
+nav button.active{background:var(--ink);color:var(--paper)}
+
+/* tabs */
+.tab{display:none;padding:42px 0 80px;animation:fade .35s ease}
+.tab.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+h1{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.1rem);font-weight:600;line-height:1.12}
+h2{font-family:var(--serif);font-size:1.45rem;font-weight:600;margin:36px 0 14px;display:flex;align-items:center;gap:10px}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+h3{font-family:var(--serif);font-size:1.08rem;font-weight:600;margin-bottom:6px}
+.kicker{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
+
+/* home hero */
+.hero{display:grid;grid-template-columns:1fr 250px;gap:38px;align-items:start}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.photo{
+  width:250px;height:290px;border-radius:8px;background:var(--paper-2);
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  color:var(--ink-soft);font-size:.8rem;text-align:center;padding:10px;
+  box-shadow:8px 8px 0 rgba(177,71,26,.12);
+}
+.photo img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.lede{font-size:1.08rem;color:var(--ink-soft);max-width:60ch;margin-top:14px}
+.lede b{color:var(--ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.chip{font-size:.78rem;font-weight:700;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft)}
+
+/* lists */
+.edu li,.pubs li{margin-bottom:9px;padding-left:18px;position:relative;list-style:none;font-size:.95rem}
+.edu li::before,.pubs li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;background:var(--accent);border-radius:1px;transform:rotate(45deg)}
+.pubs li b{font-weight:700}
+.pubs .venue{color:var(--wet);font-style:italic}
+.pubs .yr{color:var(--ink-soft);font-family:var(--mono);font-size:.82rem}
+.note{font-size:.82rem;color:var(--ink-soft);margin-top:10px}
+
+/* research / blog cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin-top:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(34,28,20,.08)}
+.card .fig{height:140px;border-radius:6px;background:repeating-linear-gradient(45deg,var(--paper-2),var(--paper-2) 10px,#ece4d2 10px,#ece4d2 20px);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:.78rem;margin-bottom:14px}
+.card p{font-size:.9rem;color:var(--ink-soft)}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+pre{
+  background:#241e15;color:#f3ead8;font-family:var(--mono);font-size:.78rem;line-height:1.55;
+  border-radius:8px;padding:14px 16px;overflow-x:auto;margin-top:12px;
+}
+pre .c{color:#8d8170}pre .k{color:#e8a04c}pre .s{color:#9fd0a8}
+
+/* software demo */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-top:18px}
+.controls{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;margin-bottom:18px}
+.ctrl label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+select{
+  font-family:var(--sans);font-size:.92rem;padding:8px 12px;border:1px solid var(--line);
+  border-radius:6px;background:var(--paper);color:var(--ink);min-width:170px;
+}
+.seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font-family:var(--mono);font-size:.82rem;padding:8px 13px;border:none;background:var(--paper);color:var(--ink-soft);cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:none}
+.seg button.on{background:var(--accent);color:#fff}
+.slider-box{flex:1;min-width:220px}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.month-label{font-family:var(--mono);font-size:.85rem;color:var(--ink)}
+.viz{display:grid;grid-template-columns:1.05fr 1fr;gap:20px}
+@media(max-width:860px){.viz{grid-template-columns:1fr}}
+.viz h3{font-size:.95rem}
+canvas{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff}
+#mapC{cursor:crosshair}
+.legend{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);margin-top:8px}
+.legend .bar{flex:1;height:10px;border-radius:4px;background:linear-gradient(90deg,#5b1f06,#b1471a,#e8a04c,#f6efde,#9fd0c8,#1f6f6b,#0c3b48)}
+.hint{font-size:.82rem;color:var(--ink-soft);margin-top:10px}
+.coming{opacity:.5}
+
+footer{border-top:1px solid var(--line);padding:26px 0;font-size:.82rem;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="brand" href="#home">K.P. <span>Tripathy</span></a>
+    <nav id="nav">
+      <button data-tab="home" class="active">Home</button>
+      <button data-tab="research">Research</button>
+      <button data-tab="blog">Blog</button>
+      <button data-tab="software">Software</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ HOME ============ -->
+<section id="home" class="tab active">
+  <div class="hero">
+    <div>
+      <div class="kicker">Hydroclimatic Extremes · Explainable AI</div>
+      <h1>Kumar P. Tripathy</h1>
+      <p class="lede">
+        Postdoctoral researcher working on <b>droughts, flash droughts, heatwaves, and compound extremes</b>.
+        I combine physics-guided deep learning and explainable AI with land&ndash;atmosphere process understanding
+        to figure out <b>why</b> extremes form, persist, and intensify.
+      </p>
+      <div class="chips">
+        <span class="chip">Flash Drought</span><span class="chip">Compound Extremes</span>
+        <span class="chip">XAI / Deep Learning</span><span class="chip">Land&ndash;Atmosphere Feedbacks</span>
+        <span class="chip">Open-Source Tools</span>
+      </div>
+    </div>
+    <div class="photo"><span>Your photo here<br/>(assets/photo.jpg)</span></div>
+  </div>
+
+  <h2>Education</h2>
+  <ul class="edu">
+    <li>Ph.D., Civil Engineering, Texas A&amp;M University, 2025 (Advisor: Dr. Ashok K. Mishra)</li>
+    <li>M.Tech., Civil Engineering, Indian Institute of Science, Bangalore, 2020 </li>
+    <li>B.Tech., Civil Engineering, IGIT Sarang, Odisha, 2017</li>
+  </ul>
+
+  <h2>Selected Publications</h2>
+  <ul class="pubs">
+    <li><b>Tripathy</b> et al. <span class="yr">2023</span> &middot; Climate change will accelerate the high-end risk of compound drought and heatwave events &middot; <span class="venue">PNAS</span></li>
+    <li><b>Tripathy</b> &amp; Mishra <span class="yr">2023</span> &middot; How unusual is the 2022 European compound drought and heatwave event? &middot; <span class="venue">GRL</span></li>
+    <li><b>Tripathy</b> &amp; Mishra <span class="yr">2024</span> &middot; Deep learning in hydrology and water resources &middot; <span class="venue">J. Hydrology</span></li>
+    <li>Sabut, <b>Tripathy</b> et al. <span class="yr">2025</span> &middot; Climate indices and corn yield in CONUS via machine learning &middot; <span class="venue">Agric. For. Meteorol.</span></li>
+    <li><b>Tripathy</b> et al. <span class="yr">2025</span> &middot; Lagged soil moisture controls on drought and heatwave persistence &middot; <span class="venue">GRL</span></li>
+    <li><b>Tripathy</b> &amp; Mishra <span class="yr">2025</span> &middot; Spatiotemporal dynamics of surface and rootzone soil moisture droughts &middot; <span class="venue">J. Hydrology</span></li>
+    <li><b>Tripathy</b> &amp; Mishra <span class="yr">2026</span> &middot; Deep learning reveals climate drivers of hydrological droughts &middot; <span class="venue">WRR</span></li>
+  </ul>
+  <p class="note">Full list on <a href="https://scholar.google.com/citations?user=wMA_dkQAAAAJ" target="_blank">Google Scholar</a> &middot; 913 citations &middot; h-index 5</p>
+
+  <h2>Interests</h2>
+  <p class="lede" style="margin-top:0">Chess, cosmology and physics reading, and building open-source research tools.</p>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section id="research" class="tab">
+  <div class="kicker">Research</div>
+  <h1>Figures, methods, and what we found</h1>
+  <p class="lede">Each card walks through one result: the figure, the code behind it, and the takeaway. Placeholder content below, swap in your real figures.</p>
+
+  <div class="cards" style="margin-top:28px">
+    <div class="card">
+      <span class="tag">Compound Extremes</span>
+      <div class="fig">Figure placeholder (PNAS Fig. 2)</div>
+      <h3>Compound drought-heatwave risk accelerates</h3>
+      <p>High-end CDHW risk grows nonlinearly with warming. We quantified frequency and severity shifts across scenarios.</p>
+    </div>
+    <div class="card">
+      <span class="tag">XAI</span>
+      <div class="fig">Figure placeholder (WRR Fig. 5)</div>
+      <h3>What drives hydrological drought?</h3>
+      <p>Expected Gradients attribution across 547 GAGES-II catchments separates precipitation deficits from temperature-driven demand.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Land-Atmosphere</span>
+      <div class="fig">Figure placeholder (GRL Fig. 3)</div>
+      <h3>Soil moisture memory and persistence</h3>
+      <p>Lagged soil moisture deficits extend drought and heatwave persistence; the coupling is strongest in transitional climates.</p>
+    </div>
+  </div>
+
+  <h2>Example: code behind a figure</h2>
+  <pre><span class="c"># attribution heatmap, Expected Gradients over input drivers</span>
+<span class="k">import</span> torch, shap
+eg = shap.GradientExplainer(model, background)
+phi = eg.shap_values(X_test)          <span class="c"># (n, lags, drivers)</span>
+attr = phi.mean(axis=0)               <span class="c"># mean attribution map</span>
+ax.pcolormesh(lags, drivers, attr.T, cmap=<span class="s">"RdBu_r"</span>)</pre>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section id="blog" class="tab">
+  <div class="kicker">Blog</div>
+  <h1>Notes on AI, hydrology, and research life</h1>
+  <p class="lede">Longer-form writing with figures and videos. First posts coming soon.</p>
+  <div class="cards" style="margin-top:28px">
+    <div class="card">
+      <span class="tag">AI</span>
+      <div class="fig">Cover image</div>
+      <h3>Why neural operators matter for hydrology</h3>
+      <p>Draft. FNOs and DeepONets as surrogates for process models, and where they break.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Drought</span>
+      <div class="fig">Cover image</div>
+      <h3>Flash drought indices disagree. A lot.</h3>
+      <p>Draft. What eight indices say about the same events, and which ones to trust where.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOFTWARE ============ -->
+<section id="software" class="tab">
+  <div class="kicker">Software · FlashCAT demo</div>
+  <h1>Interactive drought index explorer</h1>
+  <p class="lede">Pick an index and a timescale. The map shows the spatial field for a chosen month over a synthetic 30-year record. Click any grid cell to see its time series. SPI is fully computed in your browser (gamma fit + normal transform); other indices are wired in next.</p>
+
+  <div class="panel">
+    <div class="controls">
+      <div class="ctrl">
+        <label>Drought index</label>
+        <select id="indexSel">
+          <option value="spi">SPI (Standardized Precipitation Index)</option>
+          <option value="eddi14" disabled class="coming">EDDI-14 (coming soon)</option>
+          <option value="eddi28" disabled class="coming">EDDI-28 (coming soon)</option>
+          <option value="esi" disabled class="coming">ESI (coming soon)</option>
+          <option value="sesr" disabled class="coming">SESR (coming soon)</option>
+          <option value="smvi" disabled class="coming">SMVI (coming soon)</option>
+        </select>
+      </div>
+      <div class="ctrl">
+        <label>Timescale (months)</label>
+        <div class="seg" id="scaleSeg">
+          <button data-s="1">SPI-1</button>
+          <button data-s="3" class="on">SPI-3</button>
+          <button data-s="6">SPI-6</button>
+          <button data-s="12">SPI-12</button>
+        </div>
+      </div>
+      <div class="ctrl slider-box">
+        <label>Month: <span class="month-label" id="monthLab"></span></label>
+        <input type="range" id="monthSel" min="0" max="359" value="248" />
+      </div>
+    </div>
+
+    <div class="viz">
+      <div>
+        <h3>Spatial map (synthetic domain, 0.5&deg; grid)</h3>
+        <canvas id="mapC" width="560" height="400"></canvas>
+        <div class="legend">
+          <span>-3</span><div class="bar"></div><span>+3</span>
+        </div>
+        <p class="hint" id="cellHint">Click a cell to plot its time series.</p>
+      </div>
+      <div>
+        <h3 id="tsTitle">Time series</h3>
+        <canvas id="tsC" width="560" height="400"></canvas>
+        <p class="hint">Shading: D1 (SPI &lt; -1.0), D2 (&lt; -1.5), D3 (&lt; -2.0). A 2011-style multi-year drought is embedded in the synthetic record.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>How SPI is computed here</h2>
+  <pre><span class="c"># per grid cell, per calendar month (McKee et al. 1993, Thom 1958 gamma fit)</span>
+P_k   = rolling_sum(precip, k)                 <span class="c"># k-month accumulation</span>
+A     = ln(mean(P)) - mean(ln(P))              <span class="c"># Thom statistic</span>
+alpha = (1 + sqrt(1 + 4A/3)) / (4A);  beta = mean(P)/alpha
+H(x)  = q + (1-q) * GammaCDF(x; alpha, beta)   <span class="c"># q = P(zero precip)</span>
+SPI   = NormInv(H(x))                          <span class="c"># standard normal transform</span></pre>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+    <span>&copy; 2026 Kumar P. Tripathy</span>
+    <span>
+      <a href="https://scholar.google.com/citations?user=wMA_dkQAAAAJ" target="_blank">Scholar</a> &middot;
+      <a href="https://github.com/ktripa" target="_blank">GitHub</a> &middot;
+      <a href="https://orcid.org/0000-0002-2451-0166" target="_blank">ORCID</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+/* ===================== tab routing ===================== */
+const tabs=[...document.querySelectorAll('.tab')];
+const navBtns=[...document.querySelectorAll('#nav button')];
+function showTab(id){
+  tabs.forEach(t=>t.classList.toggle('active',t.id===id));
+  navBtns.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+  history.replaceState(null,'','#'+id);
+}
+navBtns.forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+if(location.hash) showTab(location.hash.slice(1));
+
+/* ===================== SPI demo ===================== */
+/* ---- seeded RNG for reproducible synthetic data ---- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rng=mulberry32(20110801);
+function gauss(){let u=0,v=0;while(u===0)u=rng();while(v===0)v=rng();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+
+/* ---- domain: NX x NY grid, NT months (1991-2020) ---- */
+const NX=28, NY=20, NT=360, Y0=1991;
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+/* synthetic monthly precip: seasonal cycle + east-west wetness gradient
+   + red-noise climate variability + an embedded 2010-2012 drought core */
+const precip=new Float32Array(NX*NY*NT);
+(function genPrecip(){
+  for(let j=0;j<NY;j++)for(let i=0;i<NX;i++){
+    const wet=30+90*(i/(NX-1));                 // mm/mo, drier west -> wetter east
+    let red=0;
+    for(let t=0;t<NT;t++){
+      const m=t%12;
+      const seas=1+0.55*Math.sin(2*Math.PI*(m-4)/12);  // late-spring peak
+      red=0.62*red+0.38*gauss();                       // temporal persistence
+      let mu=wet*seas*Math.exp(0.45*red);
+      const yr=Y0+Math.floor(t/12);
+      if(yr>=2010&&yr<=2012){                          // embedded mega-drought
+        const cx=NX*0.35,cy=NY*0.55;
+        const d=Math.hypot(i-cx,j-cy)/(NX*0.45);
+        mu*=Math.max(0.25,1-0.65*Math.exp(-d*d*3));
+      }
+      const shape=2.2, scale=mu/shape;                 // gamma-ish monthly precip
+      let g=0;for(let n=0;n<5;n++)g+=-Math.log(1-rng()); // sum of exps ~ gamma(5,1)
+      precip[(j*NX+i)*NT+t]=Math.max(0,(g/5)*mu*(0.7+0.6*rng()));
+    }
+  }
+})();
+
+/* ---- special functions: lgamma, regularized lower incomplete gamma, invNorm ---- */
+function lgamma(x){const c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5];let y=x,tmp=x+5.5;tmp-=(x+0.5)*Math.log(tmp);let ser=1.000000000190015;for(let k=0;k<6;k++)ser+=c[k]/++y;return -tmp+Math.log(2.5066282746310005*ser/x)}
+function gammaP(a,x){ // regularized lower incomplete gamma P(a,x)
+  if(x<=0)return 0;
+  if(x<a+1){let ap=a,sum=1/a,del=sum;for(let n=0;n<200;n++){ap++;del*=x/ap;sum+=del;if(Math.abs(del)<Math.abs(sum)*1e-12)break}
+    return sum*Math.exp(-x+a*Math.log(x)-lgamma(a));}
+  let b=x+1-a,c=1e30,d=1/b,h=d;
+  for(let n=1;n<200;n++){const an=-n*(n-a);b+=2;d=an*d+b;if(Math.abs(d)<1e-30)d=1e-30;c=b+an/c;if(Math.abs(c)<1e-30)c=1e-30;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<1e-12)break}
+  return 1-Math.exp(-x+a*Math.log(x)-lgamma(a))*h;
+}
+function invNorm(p){ // Acklam's rational approximation
+  if(p<=0)return -8; if(p>=1)return 8;
+  const a=[-3.969683028665376e+01,2.209460984245205e+02,-2.759285104469687e+02,1.383577518672690e+02,-3.066479806614716e+01,2.506628277459239e+00];
+  const b=[-5.447609879822406e+01,1.615858368580409e+02,-1.556989798598866e+02,6.680131188771972e+01,-1.328068155288572e+01];
+  const c=[-7.784894002430293e-03,-3.223964580411365e-01,-2.400758277161838e+00,-2.549732539343734e+00,4.374664141464968e+00,2.938163982698783e+00];
+  const d=[7.784695709041462e-03,3.224671290700398e-01,2.445134137142996e+00,3.754408661907416e+00];
+  const pl=0.02425;
+  let q,r;
+  if(p<pl){q=Math.sqrt(-2*Math.log(p));return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+  if(p>1-pl){q=Math.sqrt(-2*Math.log(1-p));return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+  q=p-0.5;r=q*q;
+  return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+}
+
+/* ---- SPI: rolling sum -> Thom gamma fit per calendar month -> normal transform ---- */
+function computeSPIcell(series,scale){
+  const acc=new Float32Array(NT).fill(NaN);
+  let run=0;
+  for(let t=0;t<NT;t++){run+=series[t];if(t>=scale)run-=series[t-scale];if(t>=scale-1)acc[t]=run}
+  const spi=new Float32Array(NT).fill(NaN);
+  for(let m=0;m<12;m++){
+    const idx=[];for(let t=scale-1;t<NT;t++)if(t%12===m)idx.push(t);
+    const pos=idx.map(t=>acc[t]).filter(v=>v>0);
+    const q=1-pos.length/idx.length;                 // zero-accumulation probability
+    if(pos.length<5){idx.forEach(t=>spi[t]=0);continue}
+    const mean=pos.reduce((a,b)=>a+b,0)/pos.length;
+    const mlog=pos.reduce((a,b)=>a+Math.log(b),0)/pos.length;
+    const A=Math.log(mean)-mlog;
+    const alpha=A>0?(1+Math.sqrt(1+4*A/3))/(4*A):100;
+    const beta=mean/alpha;
+    for(const t of idx){
+      const x=acc[t];
+      const H=x>0?q+(1-q)*gammaP(alpha,x/beta):q;
+      spi[t]=Math.max(-3.5,Math.min(3.5,invNorm(Math.min(0.99995,Math.max(0.00005,H)))));
+    }
+  }
+  return spi;
+}
+
+/* ---- state + caching ---- */
+let scale=3, monthIdx=248, sel={i:10,j:11};
+const spiCache={};
+function spiField(scale){
+  if(spiCache[scale])return spiCache[scale];
+  const f=new Array(NX*NY);
+  for(let j=0;j<NY;j++)for(let i=0;i<NX;i++){
+    const s=precip.subarray((j*NX+i)*NT,(j*NX+i)*NT+NT);
+    f[j*NX+i]=computeSPIcell(s,scale);
+  }
+  spiCache[scale]=f;return f;
+}
+
+/* ---- diverging color scale (dry brown -> wet teal) ---- */
+const STOPS=[[91,31,6],[177,71,26],[232,160,76],[246,239,222],[159,208,200],[31,111,107],[12,59,72]];
+function colorFor(v){
+  if(isNaN(v))return '#e8e2d4';
+  const x=Math.max(-3,Math.min(3,v)),u=(x+3)/6*(STOPS.length-1);
+  const k=Math.min(STOPS.length-2,Math.floor(u)),f=u-k;
+  const c=STOPS[k].map((a,n)=>Math.round(a+(STOPS[k+1][n]-a)*f));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+/* ---- drawing ---- */
+const mapC=document.getElementById('mapC'),mctx=mapC.getContext('2d');
+const tsC=document.getElementById('tsC'),tctx=tsC.getContext('2d');
+const monthLab=document.getElementById('monthLab');
+function monthName(t){return MONTHS[t%12]+' '+(Y0+Math.floor(t/12))}
+
+function drawMap(){
+  const f=spiField(scale);
+  const cw=mapC.width/NX,ch=mapC.height/NY;
+  for(let j=0;j<NY;j++)for(let i=0;i<NX;i++){
+    mctx.fillStyle=colorFor(f[j*NX+i][monthIdx]);
+    mctx.fillRect(i*cw,(NY-1-j)*ch,cw+0.5,ch+0.5);
+  }
+  // selected cell outline
+  mctx.strokeStyle='#221c14';mctx.lineWidth=2;
+  mctx.strokeRect(sel.i*cw+1,(NY-1-sel.j)*ch+1,cw-2,ch-2);
+  monthLab.textContent=monthName(monthIdx)+' · SPI-'+scale;
+}
+
+function drawTS(){
+  const f=spiField(scale),s=f[sel.j*NX+sel.i];
+  const W=tsC.width,H=tsC.height,L=44,R=10,T=14,B=30;
+  tctx.clearRect(0,0,W,H);
+  const x=t=>L+(W-L-R)*t/(NT-1), y=v=>T+(H-T-B)*(3.2-v)/6.4;
+  // drought category bands
+  const bands=[[-1,-1.5,'rgba(232,160,76,.18)'],[-1.5,-2,'rgba(177,71,26,.18)'],[-2,-3.2,'rgba(91,31,6,.18)']];
+  for(const[hi,lo,col]of bands){tctx.fillStyle=col;tctx.fillRect(L,y(hi),W-L-R,y(lo)-y(hi))}
+  // gridlines + axis
+  tctx.strokeStyle='#d8cfbc';tctx.fillStyle='#5c5345';tctx.font='11px JetBrains Mono';tctx.lineWidth=1;
+  for(let v=-3;v<=3;v++){tctx.beginPath();tctx.moveTo(L,y(v));tctx.lineTo(W-R,y(v));tctx.stroke();tctx.fillText(v,8,y(v)+4)}
+  for(let yr=Y0;yr<=Y0+29;yr+=5){const t=(yr-Y0)*12;tctx.fillText(yr,x(t)-14,H-10)}
+  // zero line
+  tctx.strokeStyle='#221c14';tctx.beginPath();tctx.moveTo(L,y(0));tctx.lineTo(W-R,y(0));tctx.stroke();
+  // SPI line
+  tctx.strokeStyle='#b1471a';tctx.lineWidth=1.6;tctx.beginPath();let started=false;
+  for(let t=0;t<NT;t++){const v=s[t];if(isNaN(v))continue;
+    if(!started){tctx.moveTo(x(t),y(v));started=true}else tctx.lineTo(x(t),y(v))}
+  tctx.stroke();
+  // current month marker
+  tctx.strokeStyle='#1f6f6b';tctx.setLineDash([4,3]);tctx.beginPath();
+  tctx.moveTo(x(monthIdx),T);tctx.lineTo(x(monthIdx),H-B);tctx.stroke();tctx.setLineDash([]);
+  document.getElementById('tsTitle').textContent=
+    `Time series · cell (${sel.i},${sel.j}) · SPI-${scale}`;
+  const v=s[monthIdx];
+  document.getElementById('cellHint').textContent=
+    `Cell (${sel.i},${sel.j}) · ${monthName(monthIdx)} · SPI-${scale} = ${isNaN(v)?'n/a':v.toFixed(2)}`;
+}
+
+function redraw(){drawMap();drawTS()}
+
+/* ---- interactions ---- */
+document.getElementById('scaleSeg').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  scale=+b.dataset.s;
+  document.querySelectorAll('#scaleSeg button').forEach(x=>x.classList.toggle('on',x===b));
+  redraw();
+});
+document.getElementById('monthSel').addEventListener('input',e=>{monthIdx=+e.target.value;redraw()});
+mapC.addEventListener('click',e=>{
+  const r=mapC.getBoundingClientRect();
+  const i=Math.floor((e.clientX-r.left)/r.width*NX);
+  const j=NY-1-Math.floor((e.clientY-r.top)/r.height*NY);
+  sel={i:Math.max(0,Math.min(NX-1,i)),j:Math.max(0,Math.min(NY-1,j))};
+  redraw();
+});
+redraw();
+</script>
+</body>
+</html>
