@@ -10,8 +10,12 @@ python -m http.server 8000   # then visit http://localhost:8000
 
 ## Deploy on GitHub Pages
 ```bash
-git init && git add . && git commit -m "initial site"
-gh repo create ktripa.github.io --public --source=. --push
+git init
+git add .
+git commit -m "initial site"
+git branch -M main
+git remote add origin https://github.com/ktripa/ktripa.github.io.git
+git push -u origin main
 # or push to any repo, then Settings > Pages > Deploy from branch > main
 ```
 If the repo is named `ktripa.github.io`, the site goes live at https://ktripa.github.io.
